@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anto Manuel — Assistant Professor & Biosensor Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:        #0B2027;
+    --teal-deep:  #0E4749;
+    --teal:       #146B6B;
+    --teal-bright:#1E9C90;
+    --teal-glow:  #5FD9C9;
+    --paper:      #F6F4EF;
+    --paper-dim:  #EDE9E0;
+    --gold:       #C9A24B;
+    --line:       rgba(11,32,39,0.12);
+    --line-soft:  rgba(246,244,239,0.16);
+    --display: 'Fraunces', serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-weight:400;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--teal-glow); color:var(--ink);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--teal-bright);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal-bright); display:inline-block;}
+
+  h1,h2,h3{font-family:var(--display); font-weight:600; line-height:1.08; color:var(--ink);}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,244,239,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:1180px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between;}
+  .nav-mark{font-family:var(--mono); font-weight:600; font-size:0.9rem; letter-spacing:0.04em;}
+  .nav-mark span{color:var(--teal-bright);}
+  .nav-links{display:flex; gap:28px; font-size:0.82rem; letter-spacing:0.03em;}
+  .nav-links a{text-decoration:none; opacity:0.75; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1; color:var(--teal-bright);}
+  @media (max-width:760px){ .nav-links{display:none;} }
+
+  /* ===== HERO ===== */
+  header.hero{
+    position:relative;
+    min-height:100svh;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(95,217,201,0.16), transparent 45%),
+      linear-gradient(160deg, var(--ink) 0%, var(--teal-deep) 46%, var(--teal) 100%);
+    color:var(--paper);
+    display:flex; align-items:center;
+    padding:120px 0 80px;
+    overflow:hidden;
+  }
+  .circuit-bg{position:absolute; inset:0; opacity:0.28; pointer-events:none;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .hero-eyebrow{font-family:var(--mono); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal-glow); margin-bottom:22px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow::before{content:''; width:26px; height:1px; background:var(--teal-glow);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.6rem);
+    color:var(--paper);
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic; color:var(--teal-glow); font-weight:500;}
+  .hero-sub{
+    margin-top:22px; max-width:520px;
+    font-size:1.08rem; color:rgba(246,244,239,0.82); font-weight:300;
+  }
+  .hero-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;}
+  .tag{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.04em;
+    border:1px solid var(--line-soft); padding:7px 14px; border-radius:100px;
+    color:var(--paper); opacity:0.88;
+  }
+  .hero-cta{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--body); font-weight:500; font-size:0.9rem;
+    padding:14px 26px; border-radius:3px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .btn-primary{background:var(--teal-glow); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px); background:#78e6d6;}
+  .btn-ghost{border:1px solid var(--line-soft); color:var(--paper);}
+  .btn-ghost:hover{transform:translateY(-2px); border-color:var(--teal-glow);}
+
+  /* hero side panel: PCB-styled ID card */
+  .hero-card{
+    position:relative; background:rgba(11,32,39,0.35);
+    border:1px solid var(--line-soft); border-radius:8px; padding:34px 28px;
+    backdrop-filter:blur(6px);
+  }
+  .hero-card::before{
+    content:''; position:absolute; top:14px; right:14px; width:34px; height:34px;
+    border:1.5px solid var(--teal-glow); border-radius:50%;
+    background:
+      radial-gradient(circle, var(--teal-glow) 3px, transparent 3.5px) center/12px 12px no-repeat;
+    opacity:0.6;
+  }
+  .avatar-mono{
+    font-family:var(--display); font-weight:600; font-size:2.6rem; color:var(--teal-glow);
+    letter-spacing:0.02em; margin-bottom:6px;
+  }
+  .hero-card .role{font-size:0.95rem; color:var(--paper); opacity:0.9; margin-bottom:22px;}
+  .stat-row{display:grid; grid-template-columns:1fr 1fr; gap:18px 10px;}
+  .stat{border-top:1px solid var(--line-soft); padding-top:12px;}
+  .stat .num{font-family:var(--mono); font-size:1.5rem; color:var(--teal-glow); font-weight:600;}
+  .stat .lbl{font-size:0.72rem; color:rgba(246,244,239,0.65); margin-top:2px;}
+
+  .scroll-cue{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:2;
+    font-family:var(--mono); font-size:0.7rem; letter-spacing:0.15em; color:rgba(246,244,239,0.55);
+    display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .scroll-cue .line{width:1px; height:28px; background:linear-gradient(var(--teal-glow), transparent); animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3;} 50%{opacity:1;}}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:110px 0;}
+  .section-head{margin-bottom:56px; max-width:640px;}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem); margin-top:14px;}
+  .section-head p{margin-top:16px; color:rgba(11,32,39,0.68); font-size:1.02rem;}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--paper);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+  .about-lead{font-family:var(--display); font-size:1.5rem; font-weight:500; line-height:1.42; color:var(--ink);}
+  .about-lead em{color:var(--teal-bright); font-style:italic;}
+  .about-body p{margin-bottom:16px; color:rgba(11,32,39,0.75);}
+  .credential-strip{display:flex; gap:0; margin-top:34px; border-top:1px solid var(--line);}
+  .credential{flex:1; padding:20px 18px 0; border-right:1px solid var(--line);}
+  .credential:last-child{border-right:none;}
+  .credential .num{font-family:var(--mono); color:var(--teal-bright); font-size:1.7rem; font-weight:600;}
+  .credential .lbl{font-size:0.78rem; color:rgba(11,32,39,0.6); margin-top:4px;}
+  @media (max-width:640px){ .credential-strip{flex-wrap:wrap;} .credential{flex:1 1 45%; border-right:none; border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:6px;} }
+
+  /* ===== TIMELINE (circuit trace) ===== */
+  .timeline-section{background:var(--paper-dim); position:relative;}
+  .timeline{position:relative; margin-top:20px;}
+  .timeline::before{
+    content:''; position:absolute; left:19px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(180deg, var(--teal-bright) 0 6px, transparent 6px 12px);
+  }
+  @media (max-width:640px){ .timeline::before{left:11px;} }
+  .t-item{position:relative; padding:0 0 52px 60px;}
+  @media (max-width:640px){ .t-item{padding-left:38px;} }
+  .t-item:last-child{padding-bottom:0;}
+  .t-node{
+    position:absolute; left:9px; top:4px; width:22px; height:22px; border-radius:50%;
+    background:var(--paper-dim); border:2.5px solid var(--teal-bright);
+  }
+  @media (max-width:640px){ .t-node{left:1px; width:22px; height:22px;} }
+  .t-node.filled{background:var(--teal-bright);}
+  .t-tag{font-family:var(--mono); font-size:0.72rem; color:var(--teal-bright); letter-spacing:0.06em;}
+  .t-title{font-family:var(--display); font-size:1.28rem; font-weight:600; margin-top:6px;}
+  .t-org{font-size:0.92rem; color:rgba(11,32,39,0.62); margin-top:2px;}
+  .t-desc{margin-top:12px; color:rgba(11,32,39,0.72); font-size:0.95rem; max-width:640px;}
+  .t-desc ul{margin-top:8px; padding-left:18px;}
+  .t-desc li{margin-bottom:6px;}
+
+  /* ===== RESEARCH / PUBLICATIONS ===== */
+  .research{background:var(--ink); color:var(--paper);}
+  .research .section-head p{color:rgba(246,244,239,0.65);}
+  .research .eyebrow{color:var(--teal-glow);}
+  .research .eyebrow::before{background:var(--teal-glow);}
+  .research h2{color:var(--paper);}
+  .pub-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); margin-top:10px;}
+  @media (max-width:760px){ .pub-grid{grid-template-columns:1fr;} }
+  .pub-card{background:var(--ink); padding:30px 28px;}
+  .pub-year{font-family:var(--mono); font-size:0.75rem; color:var(--teal-glow);}
+  .pub-title{font-family:var(--display); font-size:1.08rem; font-weight:500; margin-top:10px; line-height:1.4;}
+  .pub-venue{font-size:0.84rem; color:rgba(246,244,239,0.55); margin-top:10px;}
+  .pub-badge{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.05em; color:var(--gold); border:1px solid rgba(201,162,75,0.4); padding:4px 10px; border-radius:100px;}
+
+  /* ===== SKILLS ===== */
+  .skills{background:var(--paper);}
+  .skill-cols{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:10px;}
+  @media (max-width:860px){ .skill-cols{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .skill-cols{grid-template-columns:1fr;} }
+  .skill-col h3{font-family:var(--mono); font-weight:600; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:16px;}
+  .chip-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-size:0.82rem; background:var(--paper-dim); border:1px solid var(--line); padding:6px 12px; border-radius:4px; color:rgba(11,32,39,0.8);}
+
+  /* ===== AWARDS ===== */
+  .awards{background:var(--teal-deep); color:var(--paper);}
+  .awards .eyebrow{color:var(--teal-glow);}
+  .awards .eyebrow::before{background:var(--teal-glow);}
+  .awards h2{color:var(--paper);}
+  .awards .section-head p{color:rgba(246,244,239,0.7);}
+  .award-list{margin-top:10px;}
+  .award-row{
+    display:grid; grid-template-columns:110px 1fr; gap:24px; padding:24px 0;
+    border-bottom:1px solid var(--line-soft); align-items:start;
+  }
+  .award-row:first-child{border-top:1px solid var(--line-soft);}
+  @media (max-width:600px){ .award-row{grid-template-columns:1fr; gap:6px;} }
+  .award-year{font-family:var(--mono); color:var(--gold); font-size:1rem;}
+  .award-text{font-size:0.98rem; color:rgba(246,244,239,0.9);}
+  .award-text .venue{display:block; margin-top:4px; font-size:0.84rem; color:rgba(246,244,239,0.55);}
+
+  /* ===== LEADERSHIP / IMPACT ===== */
+  .impact{background:var(--paper);}
+  .impact-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:10px;}
+  @media (max-width:860px){ .impact-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .impact-grid{grid-template-columns:1fr;} }
+  .impact-card{border:1px solid var(--line); padding:26px 22px; border-radius:4px; background:#fff;}
+  .impact-card .num{font-family:var(--mono); font-size:2rem; color:var(--teal-bright); font-weight:600;}
+  .impact-card .lbl{margin-top:8px; font-size:0.9rem; color:rgba(11,32,39,0.72);}
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer{background:var(--ink); color:var(--paper); padding:90px 0 40px; position:relative; overflow:hidden;}
+  .footer-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:50px;}
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr;} }
+  footer h2{color:var(--paper); font-size:clamp(1.9rem,3.4vw,2.8rem);}
+  .footer-lead{margin-top:18px; color:rgba(246,244,239,0.68); max-width:440px;}
+  .contact-list{margin-top:30px; display:flex; flex-direction:column; gap:14px;}
+  .contact-row{display:flex; gap:14px; align-items:baseline; font-size:0.95rem;}
+  .contact-row .k{font-family:var(--mono); font-size:0.72rem; color:var(--teal-glow); width:90px; flex-shrink:0;}
+  .ref-card{border:1px solid var(--line-soft); border-radius:4px; padding:18px 20px; margin-bottom:14px;}
+  .ref-card .name{font-family:var(--display); font-size:1.05rem; font-weight:600;}
+  .ref-card .role{font-size:0.8rem; color:rgba(246,244,239,0.6); margin-top:2px;}
+  .foot-bottom{margin-top:70px; padding-top:26px; border-top:1px solid var(--line-soft); display:flex; justify-content:space-between; font-size:0.75rem; color:rgba(246,244,239,0.45); font-family:var(--mono); flex-wrap:wrap; gap:10px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-mark">ANTO<span>·</span>MANUEL</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#journey">Journey</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="circuit-bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#5FD9C9" stroke-width="1.4" fill="none" opacity="0.55">
+      <path d="M0 120 H300 V220 H520 V80 H900 V300 H1200"/>
+      <path d="M0 420 H180 V520 H460 V620 H760 V440 H1200"/>
+      <path d="M100 0 V60 H340 V0"/>
+      <path d="M1080 0 V140 H860 V0"/>
+      <path d="M0 700 H260 V800"/>
+      <path d="M940 800 V660 H1200"/>
+    </g>
+    <g fill="#5FD9C9" opacity="0.8">
+      <circle cx="300" cy="120" r="4"/><circle cx="520" cy="220" r="4"/><circle cx="900" cy="80" r="4"/>
+      <circle cx="180" cy="420" r="4"/><circle cx="460" cy="520" r="4"/><circle cx="760" cy="620" r="4"/>
+      <circle cx="340" cy="60" r="4"/><circle cx="860" cy="140" r="4"/><circle cx="260" cy="700" r="4"/>
+      <circle cx="940" cy="660" r="4"/>
+    </g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Assistant Professor · HoD · Ph.D. Researcher, IIT Goa</div>
+      <h1>Anto Manuel<br><em>engineers sensors,</em><br>builds minds.</h1>
+      <p class="hero-sub">Ten-plus years turning circuits, curricula, and carbon-MEMS into working systems — from a biosensor that smells acetone on a chip, to departments built from scratch.</p>
+      <div class="hero-tags">
+        <span class="tag">Biosensors &amp; MEMS</span>
+        <span class="tag">Embedded Systems</span>
+        <span class="tag">Academic Leadership</span>
+        <span class="tag">NBA / NAAC Accreditation</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="#research" class="btn btn-ghost">View publications</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="avatar-mono">A.M.</div>
+      <div class="role">HoD, Biomedical Engineering<br>Rajadhani Institute of Engineering &amp; Technology</div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">10+</div><div class="lbl">Years in academia &amp; industry</div></div>
+        <div class="stat"><div class="num">16</div><div class="lbl">Peer-reviewed publications</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl">Best Paper Awards</div></div>
+        <div class="stat"><div class="num">20+</div><div class="lbl">Embedded R&amp;D systems built</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow">Profile</div>
+      <p class="about-lead" style="margin-top:16px;">An engineer who never left the <em>lab</em>, and a professor who never left the <em>circuit</em>.</p>
+    </div>
+    <div class="about-body reveal">
+      <p>Anto Manuel is an Assistant Professor, engineering academic, and researcher with more than a decade of experience spanning teaching, research, academic administration, and product development. He is currently pursuing a Ph.D. at IIT Goa, developing biosensors using MEMS and nanomaterials.</p>
+      <p>His work moves fluidly between the classroom and the cleanroom — building curricula and laboratories on one side, and glassy-carbon acetone sensors and carry-select adders on the other. He has led accreditation drives (NAAC, NBA), coordinated final-year research for hundreds of students, and authored peer-reviewed journal papers recognised with multiple international Best Paper Awards.</p>
+      <p>Alongside the research, he has spent seven years as an NSS Programme Officer, coordinating the construction of homes for underprivileged families and organising societal-benefit camps — proof that his idea of "engineering impact" extends well past the PCB.</p>
+      <div class="credential-strip">
+        <div class="credential"><div class="num">Ph.D.</div><div class="lbl">IIT Goa, Biosensors — ongoing</div></div>
+        <div class="credential"><div class="num">M.Tech</div><div class="lbl">VLSI &amp; Embedded Systems — 8.86 CGPA, Univ. 3rd Rank</div></div>
+        <div class="credential"><div class="num">B.E.</div><div class="lbl">Electronics &amp; Communication, Anna University</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section" id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Journey</div>
+      <h2>From production floor to the professor's chair</h2>
+      <p>A single trace connecting a decade of roles — production engineering, R&amp;D, teaching, and academic leadership.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-node filled"></div>
+        <div class="t-tag">JUNE 2025 — PRESENT</div>
+        <div class="t-title">Assistant Professor · HoD · Deputy Controller of Examinations</div>
+        <div class="t-org">Rajadhani Institute of Engineering and Technology, Thiruvananthapuram</div>
+        <div class="t-desc">
+          <ul>
+            <li>Leads the Department of Biomedical Engineering — faculty, curriculum, labs, research culture, and accreditation standards.</li>
+            <li>Serves as Deputy Controller of Examinations in the Autonomous Cell, overseeing evaluation, results, and revaluation with strict confidentiality.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node filled"></div>
+        <div class="t-tag">MARCH 2016 — MAY 2025</div>
+        <div class="t-title">Assistant Professor</div>
+        <div class="t-org">St. Joseph's College of Engineering and Technology, Palai</div>
+        <div class="t-desc">
+          Nine years across analog/digital electronics, embedded systems, and MEMS — designing on STM32, PIC, ATmega and AT89 families, managing the Product Design Lab, and coordinating the M.Tech VLSI &amp; Embedded Systems programme.
+          <ul>
+            <li>Conceived and built the college's Heritage Museum, commended by senior leadership.</li>
+            <li>Led NAAC Criterion 4 and NBA accreditation documentation and execution.</li>
+            <li>Guided final-year student projects for 4+ years; ran admissions for 8 years.</li>
+            <li>NSS Programme Officer for 7 years — 11 homes built, seven social-benefit camps.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node"></div>
+        <div class="t-tag">DEC 2015 — MAR 2016</div>
+        <div class="t-title">Research and Development Engineer</div>
+        <div class="t-org">Simstream Pvt Ltd, Kerala</div>
+        <div class="t-desc">Translated client needs into embedded system designs — market analysis, conceptualisation, prototyping, and cost-reduction, tested to industrial standards.</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node"></div>
+        <div class="t-tag">AUG 2012 — JUNE 2013</div>
+        <div class="t-title">Production Engineer</div>
+        <div class="t-org">IPA Pvt Ltd, Bengaluru</div>
+        <div class="t-desc">PLC ladder logic for industrial automation, process optimisation, equipment calibration, and production scheduling.</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node"></div>
+        <div class="t-tag">2021 — CONTINUING</div>
+        <div class="t-title">Ph.D., Biosensors, MEMS &amp; IoT</div>
+        <div class="t-org">Indian Institute of Technology Goa</div>
+        <div class="t-desc">Glassy carbon, photolithography, and Carbon-MEMS sensor fabrication — four publications, two book chapters, and three Best Paper Awards along the way.</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node"></div>
+        <div class="t-tag">2013 — 2015</div>
+        <div class="t-title">M.Tech, VLSI &amp; Embedded Systems</div>
+        <div class="t-org">St. Joseph's College of Engineering and Technology · Mahatma Gandhi University</div>
+        <div class="t-desc">8.86 CGPA, University Third Rank Holder. Thesis: an embedded, Android-controlled vehicle security system, deployed in a real car.</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-node"></div>
+        <div class="t-tag">2008 — 2012</div>
+        <div class="t-title">B.E., Electronics &amp; Communication Engineering</div>
+        <div class="t-org">Maha Barathi Engineering College · Anna University, Chennai</div>
+        <div class="t-desc">7.92 CGPA. Main project: a low-power, area-efficient carry-select adder in VLSI design.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="research" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Selected Research</div>
+      <h2>Sixteen papers. One recurring question: can a sensor see what we can't?</h2>
+      <p>Publications trace a single thread — glassy-carbon and Carbon-MEMS sensors for acetone and disease biomarkers — alongside forays into AI-driven public health and disaster prediction.</p>
+    </div>
+    <div class="pub-grid">
+      <div class="pub-card reveal">
+        <div class="pub-year">2026</div>
+        <div class="pub-title">Microelectronic Devices — Book Chapter 2</div>
+        <div class="pub-venue">"Microelectronics: Simulations, Modeling and Applications," Wiley &amp; Scrivener</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2025</div>
+        <div class="pub-title">Carbon-MEMS derived glassy carbon sensor for acetone sensing</div>
+        <div class="pub-venue">Microsystem Technologies, Vol. 31, 3579–3592</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2026</div>
+        <div class="pub-title">Nanocomposite Coated Carbon-MEMS-Derived Glassy Carbon Electrode for Acetone Sensing</div>
+        <div class="pub-venue">6th Int'l Conf. on Micro/Nanoelectronics, NIT Silchar</div>
+        <div class="pub-badge">Best Paper</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2025</div>
+        <div class="pub-title">Sensor response of a glassy-carbon IDE biosensor for acetone, modelled in COMSOL Multiphysics</div>
+        <div class="pub-venue">6th ICCC, Thiruvananthapuram</div>
+        <div class="pub-badge">Best Paper</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2025</div>
+        <div class="pub-title">Glassy Carbon based Acetone Detector using Carbon-MEMS Technology</div>
+        <div class="pub-venue">5th Int'l Conf. on Micro/Nanoelectronics, NIT Silchar</div>
+        <div class="pub-badge">Best Paper</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2024</div>
+        <div class="pub-title">Elderly Fall Detection System Using mm-Wave Radar Sensor</div>
+        <div class="pub-venue">ICAECT 2024, Bhilai</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2023</div>
+        <div class="pub-title">IoT-enabled biosensors for cancer and disease detection — Book Chapter 4</div>
+        <div class="pub-venue">Internet of Things in Biomedical Sciences, IOP Publishing</div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2023</div>
+        <div class="pub-title">AI-integrated IoT smart mask for disease prediction &amp; SOS alerting</div>
+        <div class="pub-venue">IConSCEPT 2023, NIT Puducherry</div>
+        <div class="pub-badge">Best Paper</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Toolkit</div>
+      <h2>What's on the bench</h2>
+      <p>From PCB layout to policy documents — the range a department head actually needs.</p>
+    </div>
+    <div class="skill-cols">
+      <div class="skill-col reveal">
+        <h3>Design &amp; Simulation</h3>
+        <div class="chip-list">
+          <span class="chip">OrCAD</span><span class="chip">Proteus</span><span class="chip">COMSOL Multiphysics</span>
+          <span class="chip">SOLIDWORKS</span><span class="chip">LTspice</span><span class="chip">ModelSim</span>
+          <span class="chip">Xilinx ISE</span><span class="chip">Keil µVision</span><span class="chip">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Embedded &amp; Hardware</h3>
+        <div class="chip-list">
+          <span class="chip">STM32F401RE</span><span class="chip">PIC16F877</span><span class="chip">ATmega328P</span>
+          <span class="chip">AT89C51RC</span><span class="chip">BeagleBone</span><span class="chip">PYNQ</span>
+          <span class="chip">FPGA Spartan 3E</span><span class="chip">Arduino</span>
+        </div>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Programming &amp; Docs</h3>
+        <div class="chip-list">
+          <span class="chip">C / C++</span><span class="chip">VHDL</span><span class="chip">PLC Ladder Logic</span>
+          <span class="chip">LaTeX / Overleaf</span><span class="chip">R Studio</span>
+          <span class="chip">NAAC / NBA Documentation</span><span class="chip">Grant Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Beyond the Lab</div>
+      <h2>Impact measured outside the journal metrics</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal"><div class="num">11</div><div class="lbl">Homes built for underprivileged families through NSS-led construction drives</div></div>
+      <div class="impact-card reveal"><div class="num">7 yrs</div><div class="lbl">As NSS Programme Officer, Unit 201 — since August 2017</div></div>
+      <div class="impact-card reveal"><div class="num">80+</div><div class="lbl">Social service programmes coordinated in a single academic year (2023–24)</div></div>
+      <div class="impact-card reveal"><div class="num">₹1.5 Cr+</div><div class="lbl">In assets created through NSS special camps at General Hospital, Palai</div></div>
+      <div class="impact-card reveal"><div class="num">50+</div><div class="lbl">Technical events run as Coordinator, Electronics Students Association (2023–24)</div></div>
+      <div class="impact-card reveal"><div class="num">20+</div><div class="lbl">Embedded &amp; IoT systems conceived and guided, 2016–2024</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="awards" id="awards">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recognition</div>
+      <h2>Award-winning, by a habit of finishing what he starts</h2>
+    </div>
+    <div class="award-list">
+      <div class="award-row reveal">
+        <div class="award-year">2026</div>
+        <div class="award-text">Best Paper Award — Nanocomposite Coated Carbon-MEMS-Derived Glassy Carbon Electrode for Acetone Sensing<span class="venue">6th Int'l Conf. on Micro/Nanoelectronics, NIT Silchar</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2025</div>
+        <div class="award-text">Best Paper Award — sensor response of a glassy-carbon biosensor modelled in COMSOL Multiphysics<span class="venue">6th ICCC, Thiruvananthapuram</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2025</div>
+        <div class="award-text">Best Paper Award — Glassy Carbon based Acetone Detector using Carbon-MEMS Technology<span class="venue">5th Int'l Conf. on Micro/Nanoelectronics, NIT Silchar</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2024</div>
+        <div class="award-text">Guided student team to 2nd place at the Ideathon, APJAKTU Techfest — among 70 competing groups<span class="venue">Ahalia College of Engineering, Palakkad</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2023</div>
+        <div class="award-text">Best Paper Award — AI-integrated IoT smart mask for disease prediction &amp; SOS alerting<span class="venue">IConSCEPT 2023, NIT Puducherry</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2022</div>
+        <div class="award-text">"PREDISTER" — grant from CERD, CET Trivandrum, and selection for K-DISC's Young Innovators Programme<span class="venue">Center for Engineering Research and Development</span></div>
+      </div>
+      <div class="award-row reveal">
+        <div class="award-year">2018</div>
+        <div class="award-text">SAGY rural-development survey of Melukavu Panchayat — appreciation from AICTE<span class="venue">Sansad Adarsh Gram Yojana</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <svg class="circuit-bg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; opacity:0.14; pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#5FD9C9" stroke-width="1.2" fill="none">
+      <path d="M0 60 H260 V160 H600 V40 H1000 V220 H1200"/>
+      <path d="M0 320 H180 V240 H500 V320 H900 V200 H1200"/>
+    </g>
+  </svg>
+  <div class="wrap footer-grid">
+    <div class="reveal">
+      <div class="eyebrow">Let's connect</div>
+      <h2>Building a lab, a curriculum, or a sensor? Let's talk.</h2>
+      <p class="footer-lead">Open to research collaborations, guest lectures, accreditation consulting, and embedded-systems project mentorship.</p>
+      <div class="contact-list">
+        <div class="contact-row"><span class="k">EMAIL</span> antomjp4@gmail.com</div>
+        <div class="contact-row"><span class="k">PHONE</span> +91 8590024145</div>
+        <div class="contact-row"><span class="k">LINKEDIN</span> linkedin.com/in/anto-manuel-56905464</div>
+        <div class="contact-row"><span class="k">LOCATION</span> Palackal House, Karoor P.O, Pala, Kottayam, Kerala 686574, India</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px;">References</div>
+      <div class="ref-card">
+        <div class="name">Dr. Madhukumar S</div>
+        <div class="role">Principal, Rajadhani Institute of Engineering &amp; Technology · +91 9495431623</div>
+      </div>
+      <div class="ref-card">
+        <div class="name">Dr. Arun P</div>
+        <div class="role">HoD, ECE, St. Joseph's College of Engineering &amp; Technology · +91 9061073676</div>
+      </div>
+      <div class="ref-card">
+        <div class="name">Mr. Saji</div>
+        <div class="role">HoD, Production, IPA India Pvt Ltd · +91 9740085694</div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 ANTO MANUEL</span>
+    <span>PORTFOLIO / v1.0</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
